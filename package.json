@@ -14,14 +14,34 @@
         "url": "https://github.com/nitroluxjs/cli/issues"
     },
     "homepage": "https://github.com/nitroluxjs/cli#readme",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.mjs",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "files": ["dist"],
     "scripts": {
+        "build": "unbuild",
         "check": "biome check . --write",
         "format": "biome format . --write",
-        "lint": "biome lint . --write"
+        "lint": "biome lint . --write",
+        "prepare": "lefthook install || true",
+        "prepack": "pnpm --silent run build",
+        "pre-commit": "lefthook run pre-commit --force",
+        "release": "pnpm publish --dry-run",
+        "typecheck": "tsc -b --noEmit"
     },
-    "dependencies": {},
     "devDependencies": {
-        "@biomejs/biome": "^1.9.4"
+        "@biomejs/biome": "^1.9.4",
+        "@types/node": "^22.8.0",
+        "lefthook": "^1.8.1",
+        "typescript": "^5.6.3",
+        "unbuild": "^2.0.0"
     },
     "packageManager": "pnpm@9.12.2"
 }

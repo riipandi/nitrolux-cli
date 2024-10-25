@@ -1,0 +1,12 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "Node",
+        "esModuleInterop": true,
+        "tsBuildInfoFile": "./node_modules/.tsbuildinfo",
+        "strict": true
+    },
+    "include": ["src"]
+}
