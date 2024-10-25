@@ -36,6 +36,7 @@ _data/
 .output
 .client
 .build
+.tmp
 .wrangler
 build/
 dist/

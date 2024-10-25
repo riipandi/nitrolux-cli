@@ -1,6 +1,6 @@
 {
     "name": "@nitrolux/cli",
-    "version": "0.0.11",
+    "version": "0.0.12",
     "description": "Nitrolux Command Line Interface",
     "author": "Aris Ripandi <aris@duck.com>",
     "license": "MIT",
@@ -40,10 +40,17 @@
         "release": "pnpm publish",
         "release:dry": "pnpm publish --no-git-checks --dry-run",
         "update-deps": "npm-check-updates --configFileName .ncurc.json",
+        "cleanup": "pnpm run --stream --parallel --color \"/cleanup:(?!deps)/\"",
+        "cleanup:dev": "pnpm dlx rimraf .{build,data,tmp} build dist",
+        "cleanup:deps": "pnpm dlx rimraf pnpm-lock.yaml node_modules",
         "typecheck": "tsc -b --noEmit"
     },
     "dependencies": {
         "citty": "^0.1.6",
+        "consola": "^3.2.3",
+        "giget": "^1.2.3",
+        "make-dir": "^5.0.0",
+        "pathe": "^1.1.2",
         "std-env": "^3.7.0"
     },
     "devDependencies": {
