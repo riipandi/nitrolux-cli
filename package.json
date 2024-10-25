@@ -1,6 +1,6 @@
 {
     "name": "@nitrolux/cli",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "description": "Nitrolux Command Line Interface",
     "author": "Aris Ripandi <aris@duck.com>",
     "license": "MIT",
