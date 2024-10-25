@@ -3,6 +3,7 @@ import consola from 'consola'
 import { downloadTemplate } from 'giget'
 import { makeDirectory } from 'make-dir'
 import { resolve } from 'pathe'
+import { checkDirectoryExists } from '../utils'
 
 export default defineCommand({
   meta: {
@@ -15,6 +16,13 @@ export default defineCommand({
       description: 'Application name (lowercase, separated by dashes)',
       valueHint: 'nitro-app',
       required: true,
+    },
+    template: {
+      type: 'string',
+      description: 'Template to use for the application',
+      default: 'nitro-basic',
+      required: false,
+      alias: 't',
     },
     baseDir: {
       type: 'string',
@@ -56,14 +64,37 @@ export default defineCommand({
       default: false,
     },
   },
-  setup() {
-    consola.info('Do some setup here')
+  async setup({ args }) {
+    const { template, silent } = args
+    try {
+      if (!silent) {
+        consola.info(`Fetching and validating template '${template}'`)
+      }
+
+      const templateExists = await checkDirectoryExists('nitroluxjs', 'templates', template)
+
+      if (templateExists) {
+        if (!silent) {
+          consola.success(`Template '${template}' exists and available for use`)
+        }
+      } else {
+        if (!silent) {
+          consola.warn(`Template '${template}' not found in the template repository`)
+        }
+        process.exit(1)
+      }
+    } catch (error: unknown) {
+      if (!silent) {
+        consola.error(error instanceof Error ? error.message : 'Unknown error occurred')
+      }
+      process.exit(1)
+    }
   },
   cleanup() {
     consola.info('Do some cleanup here')
   },
   async run({ args }) {
-    const { name, baseDir, force, silent, dryRun, install } = args
+    const { name, baseDir, force, silent, dryRun, install, template } = args
 
     try {
       // Early exit for dry run
@@ -83,12 +114,8 @@ export default defineCommand({
       const basePath = baseDir ? `${baseDir}/${name}` : name
       const targetDir = resolve(basePath)
 
-      // Download and extract template from template repository
-      if (!silent && install) {
-        consola.info('Installing dependencies...')
-      }
-
-      const { source, dir } = await downloadTemplate('github:unjs/nitro-starter', {
+      const templateUrl = `github:nitroluxjs/templates/${template}`
+      const { source, dir } = await downloadTemplate(templateUrl, {
         dir: targetDir,
         cwd: targetDir,
         forceClean: force,
@@ -104,7 +131,7 @@ export default defineCommand({
       }
     } catch (error) {
       if (!silent) {
-        consola.error('Failed to create application:', error)
+        consola.error(error instanceof Error ? error.message : 'Unknown error occurred')
       }
       process.exit(1)
     }
