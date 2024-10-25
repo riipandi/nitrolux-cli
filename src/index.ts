@@ -22,7 +22,7 @@ const main = defineCommand({
     },
   },
   run({ args }) {
-    console.info(`${args.friendly ? 'Howdy,' : 'Creating application:'} ${args.name}\n`)
+    console.info(`${args.friendly ? 'Howdy,' : 'Creating application:'} ${args.name}`)
   },
 })
 
