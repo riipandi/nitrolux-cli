@@ -4,6 +4,7 @@ import { purgePolyfills } from 'unplugin-purge-polyfills'
 
 export default defineBuildConfig({
   declaration: true,
+  clean: true,
   hooks: {
     'rollup:options'(_, options) {
       const plugins = (options.plugins ||= []) as InputPluginOption[]
