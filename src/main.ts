@@ -18,7 +18,11 @@ export default defineCommand({
     create: () => import('./cmds/create').then((r) => r.default),
     version: () => import('./cmds/version').then((r) => r.default),
   },
-  async run({ cmd }) {
-    showUsage(cmd)
+  async run({ args, cmd }) {
+    // Show help page if --help flag is used or no subcommand provided
+    if (args.help || args._.length === 0) {
+      showUsage(cmd)
+      return
+    }
   },
 })

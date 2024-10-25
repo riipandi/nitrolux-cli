@@ -26,7 +26,13 @@ export default defineCommand({
       type: 'boolean',
       description: 'Force overwrite existing application directory',
       default: false,
-      alias: 'F',
+      alias: 'f',
+    },
+    install: {
+      type: 'boolean',
+      description: 'Install  dependencies after creating the application',
+      default: false,
+      alias: 'i',
     },
     silent: {
       type: 'boolean',
@@ -57,7 +63,7 @@ export default defineCommand({
     consola.info('Do some cleanup here')
   },
   async run({ args }) {
-    const { name, baseDir, force, silent, dryRun } = args
+    const { name, baseDir, force, silent, dryRun, install } = args
 
     try {
       // Early exit for dry run
@@ -78,9 +84,15 @@ export default defineCommand({
       const targetDir = resolve(basePath)
 
       // Download and extract template from template repository
+      if (!silent && install) {
+        consola.info('Installing dependencies...')
+      }
+
       const { source, dir } = await downloadTemplate('github:unjs/nitro-starter', {
         dir: targetDir,
+        cwd: targetDir,
         forceClean: force,
+        install,
         silent,
       })
 
