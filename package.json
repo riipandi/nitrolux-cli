@@ -27,6 +27,7 @@
     "files": ["dist"],
     "scripts": {
         "build": "unbuild",
+        "dev": "tsx src/index.ts",
         "check": "biome check . --write",
         "format": "biome format . --write",
         "lint": "biome lint . --write",
@@ -36,10 +37,14 @@
         "release": "pnpm publish --dry-run",
         "typecheck": "tsc -b --noEmit"
     },
+    "dependencies": {
+        "citty": "^0.1.6"
+    },
     "devDependencies": {
         "@biomejs/biome": "^1.9.4",
         "@types/node": "^22.8.0",
         "lefthook": "^1.8.1",
+        "tsx": "^4.19.1",
         "typescript": "^5.6.3",
         "unbuild": "^2.0.0"
     },
