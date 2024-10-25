@@ -7,7 +7,7 @@ import { resolve } from 'pathe'
 export default defineCommand({
   meta: {
     name: 'create',
-    description: 'Create a new Nitrolux application',
+    description: 'Create a new Nitro application',
   },
   args: {
     name: {
@@ -44,6 +44,17 @@ export default defineCommand({
       default: false,
       alias: 'V',
     },
+    help: {
+      type: 'boolean',
+      description: 'Print information about the command',
+      default: false,
+    },
+  },
+  setup() {
+    consola.info('Do some setup here')
+  },
+  cleanup() {
+    consola.info('Do some cleanup here')
   },
   async run({ args }) {
     const { name, baseDir, force, silent, dryRun } = args
