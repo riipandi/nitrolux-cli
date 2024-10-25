@@ -1,6 +1,6 @@
 {
     "name": "@nitrolux/cli",
-    "version": "0.0.18",
+    "version": "0.0.19",
     "description": "Nitrolux Command Line Interface",
     "author": "Aris Ripandi <aris@duck.com>",
     "license": "MIT",
@@ -50,6 +50,7 @@
         "consola": "^3.2.3",
         "giget": "^1.2.3",
         "make-dir": "^5.0.0",
+        "node-jq": "^6.0.1",
         "pathe": "^1.1.2",
         "std-env": "^3.7.0"
     },

@@ -1,7 +1,9 @@
+import fs from 'node:fs'
 import { defineCommand } from 'citty'
 import consola from 'consola'
 import { downloadTemplate } from 'giget'
 import { makeDirectory } from 'make-dir'
+import jq from 'node-jq'
 import { resolve } from 'pathe'
 import { checkDirectoryExists } from '../utils'
 
@@ -78,15 +80,11 @@ export default defineCommand({
           consola.success(`Template '${template}' exists and available for use`)
         }
       } else {
-        if (!silent) {
-          consola.warn(`Template '${template}' not found in the template repository`)
-        }
+        consola.warn(`Template '${template}' not found in the template repository`)
         process.exit(1)
       }
     } catch (error: unknown) {
-      if (!silent) {
-        consola.error(error instanceof Error ? error.message : 'Unknown error occurred')
-      }
+      consola.error(error instanceof Error ? error.message : 'Unknown error occurred')
       process.exit(1)
     }
   },
@@ -114,7 +112,7 @@ export default defineCommand({
       const basePath = baseDir ? `${baseDir}/${name}` : name
       const targetDir = resolve(basePath)
 
-      if (!silent) {
+      if (!silent && install) {
         consola.info(`Installing dependencies...`)
       }
 
@@ -127,10 +125,21 @@ export default defineCommand({
         silent,
       })
 
+      // Change package name in package.json using node-jq
+      consola.info(`Updating application name in package.json`)
+      const packageJsonPath = resolve(dir, 'package.json')
+      jq.run(`.name = "${name}"`, packageJsonPath, { output: 'json' })
+        .then((output) => {
+          // Write the modified JSON back to the file
+          fs.writeFileSync(packageJsonPath, JSON.stringify(output, null, 4))
+        })
+        .catch((err) => {
+          throw new Error(`Failed to update package.json: ${err.message}`)
+        })
+
       // Log success messages
       if (!silent) {
         consola.info(`Template source: ${source}`)
-        consola.info(`Output directory: ${dir}`)
         consola.success(`Application "${name}" has been created at ${targetDir}`)
       }
     } catch (error) {

@@ -1,5 +1,3 @@
-import consola from 'consola'
-
 /**
  * Represents a GitHub API content item response
  */
@@ -64,7 +62,6 @@ export async function checkDirectoryExists(
     )
 
     if (directoryExists) {
-      consola.success(`Directory '${directoryName}' exists in the repository`)
       return true
     }
 
