@@ -12,8 +12,8 @@ export default defineCommand({
   args: {
     name: {
       type: 'positional',
-      description: 'Application name',
-      valueHint: 'my-app',
+      description: 'Application name (lowercase, separated by dashes)',
+      valueHint: 'nitro-app',
       required: true,
     },
     baseDir: {
