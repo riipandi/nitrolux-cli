@@ -1,10 +1,11 @@
 import { runMain as _runMain, defineCommand } from 'citty'
+import pkg from '../package.json' assert { type: 'json' }
 
 const main = defineCommand({
   meta: {
     name: 'nitrolux',
-    version: '0.0.1',
-    description: '\nNitrolux Command Line Interface',
+    version: pkg.version,
+    description: `\n${pkg.description}`,
   },
   args: {
     name: {
