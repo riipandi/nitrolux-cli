@@ -5,7 +5,7 @@ const main = defineCommand({
   meta: {
     name: 'nitrolux',
     version: pkg.version,
-    description: `\n${pkg.description}`,
+    description: pkg.description,
   },
   args: {
     name: {
@@ -17,7 +17,8 @@ const main = defineCommand({
     verbose: {
       type: 'boolean',
       description: 'Use friendly greeting',
-      alias: 'F',
+      default: false,
+      alias: 'V',
     },
   },
   run({ args }) {

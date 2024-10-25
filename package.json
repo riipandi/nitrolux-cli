@@ -1,11 +1,11 @@
 {
     "name": "@nitrolux/cli",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "Nitrolux Command Line Interface",
     "author": "Aris Ripandi <aris@duck.com>",
     "license": "MIT",
     "type": "module",
-    "keywords": [""],
+    "keywords": ["nitrolux", "cli", "command-line", "utilities"],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/nitroluxjs/cli.git"
@@ -27,7 +27,7 @@
         "build": "unbuild",
         "build:stub": "unbuild --stub",
         "dev:prepare": "unbuild --stub",
-        "dev": "pnpm build &>/dev/null && pnpm --silent nitrolux",
+        "dev": "pnpm build &>/dev/null && pnpm -s nitrolux",
         "check": "biome check . --write",
         "format": "biome format . --write",
         "lint": "biome lint . --write",
