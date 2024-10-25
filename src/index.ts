@@ -4,7 +4,7 @@ const main = defineCommand({
   meta: {
     name: 'nitrolux',
     version: '0.0.1',
-    description: 'Nitrolux Command Line Interface',
+    description: '\nNitrolux Command Line Interface',
   },
   args: {
     name: {
