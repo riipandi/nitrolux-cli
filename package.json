@@ -34,7 +34,7 @@
         "prepare": "lefthook install || true",
         "prepack": "pnpm --silent run build",
         "pre-commit": "lefthook run pre-commit --force",
-        "release": "pnpm publish --dry-run",
+        "release": "pnpm publish",
         "typecheck": "tsc -b --noEmit"
     },
     "dependencies": {
