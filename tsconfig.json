@@ -6,7 +6,16 @@
         "moduleResolution": "Node",
         "esModuleInterop": true,
         "tsBuildInfoFile": "./node_modules/.tsbuildinfo",
-        "strict": true
+        "allowJs": true,
+        "isolatedModules": false,
+        "moduleDetection": "auto",
+        "noEmit": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitOverride": true,
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "verbatimModuleSyntax": true
     },
     "include": ["src"]
 }
