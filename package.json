@@ -36,7 +36,7 @@
         "prepack": "pnpm --silent run build",
         "pre-commit": "lefthook run pre-commit --force",
         "nitrolux": "node ./bin/nitrolux.mjs",
-        "release": "pnpm publish",
+        "release": "pnpm publish --access public",
         "typecheck": "tsc -b --noEmit"
     },
     "dependencies": {
