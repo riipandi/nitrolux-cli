@@ -1,4 +1,4 @@
-import { defineCommand } from 'citty'
+import { defineCommand, showUsage } from 'citty'
 import pkg from '../package.json' assert { type: 'json' }
 
 export default defineCommand({
@@ -17,5 +17,8 @@ export default defineCommand({
   subCommands: {
     create: () => import('./cmds/create').then((r) => r.default),
     version: () => import('./cmds/version').then((r) => r.default),
+  },
+  async run({ cmd }) {
+    showUsage(cmd)
   },
 })
