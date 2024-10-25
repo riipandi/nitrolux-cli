@@ -1,6 +1,6 @@
 {
     "name": "@nitrolux/cli",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "Nitrolux Command Line Interface",
     "author": "Aris Ripandi <aris@duck.com>",
     "license": "MIT",
@@ -18,12 +18,10 @@
         ".": "./dist/index.mjs",
         "./cli": "./bin/nitrolux.mjs"
     },
-    "types": "./dist/index.d.ts",
-    "bin": {
-        "nitrolux-cli": "./bin/nitrolux.mjs",
-        "nitrolux": "./bin/nitrolux.mjs"
-    },
+    "bin": "./bin/nitrolux.mjs",
     "main": "./bin/nitrolux.mjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
     "files": ["bin", "dist"],
     "scripts": {
         "build": "unbuild",
@@ -37,8 +35,8 @@
         "prepack": "pnpm --silent run build",
         "pre-commit": "lefthook run pre-commit --force",
         "nitrolux": "node ./bin/nitrolux.mjs",
-        "release": "pnpm publish --access public",
-        "release:dry": "pnpm publish --access public --no-git-checks --dry-run",
+        "release": "pnpm publish",
+        "release:dry": "pnpm publish --no-git-checks --dry-run",
         "update-deps": "npm-check-updates --configFileName .ncurc.json",
         "typecheck": "tsc -b --noEmit"
     },
@@ -54,6 +52,10 @@
         "typescript": "^5.6.3",
         "unbuild": "^2.0.0",
         "unplugin-purge-polyfills": "^0.0.7"
+    },
+    "publishConfig": {
+        "executableFiles": ["./bin/nitrolux.mjs"],
+        "access": "public"
     },
     "packageManager": "pnpm@9.12.2"
 }

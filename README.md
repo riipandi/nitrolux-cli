@@ -6,7 +6,17 @@ Nitrolux Command Line Interface.
 
 ## 🏁 Quickstart
 
-TODO
+##### Using `npx`
+
+```sh
+npx @nitrolux/cli@latest
+```
+
+##### Using `pnpm dlx`
+
+```sh
+pnpm dlx @nitrolux/cli@latest
+```
 
 ## 🧑🏻‍💻 Development
 
