@@ -114,6 +114,10 @@ export default defineCommand({
       const basePath = baseDir ? `${baseDir}/${name}` : name
       const targetDir = resolve(basePath)
 
+      if (!silent) {
+        consola.info(`Installing dependencies...`)
+      }
+
       const templateUrl = `github:nitroluxjs/templates/${template}`
       const { source, dir } = await downloadTemplate(templateUrl, {
         dir: targetDir,
