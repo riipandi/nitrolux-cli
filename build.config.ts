@@ -7,18 +7,12 @@ export default defineBuildConfig({
   hooks: {
     'rollup:options'(_, options) {
       const plugins = (options.plugins ||= []) as InputPluginOption[]
-      plugins.push(
-        purgePolyfills.rollup({
-          logLevel: 'verbose',
-        })
-      )
+      plugins.push(purgePolyfills.rollup({ logLevel: 'verbose' }))
     },
   },
   rollup: {
     inlineDependencies: true,
-    resolve: {
-      exportConditions: ['production', 'node'] as any,
-    },
+    resolve: { exportConditions: ['production', 'node'] as any },
   },
   entries: ['src/index'],
   externals: [

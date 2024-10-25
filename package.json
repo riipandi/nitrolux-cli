@@ -39,6 +39,7 @@
         "nitrolux": "node ./bin/nitrolux.mjs",
         "release": "pnpm publish --access public",
         "release:dry": "pnpm publish --access public --no-git-checks --dry-run",
+        "update-deps": "npm-check-updates --configFileName .ncurc.json",
         "typecheck": "tsc -b --noEmit"
     },
     "dependencies": {
@@ -49,6 +50,7 @@
         "@biomejs/biome": "^1.9.4",
         "@types/node": "^22.8.0",
         "lefthook": "^1.8.1",
+        "npm-check-updates": "^17.1.4",
         "typescript": "^5.6.3",
         "unbuild": "^2.0.0",
         "unplugin-purge-polyfills": "^0.0.7"
