@@ -1,6 +1,6 @@
 {
     "name": "@nitrolux/cli",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Nitrolux Command Line Interface",
     "author": "Aris Ripandi <aris@duck.com>",
     "license": "MIT",
@@ -28,8 +28,8 @@
     "scripts": {
         "build": "unbuild",
         "build:stub": "unbuild --stub",
-        "dev": "node ./bin/nitrolux.mjs",
         "dev:prepare": "unbuild --stub",
+        "dev": "pnpm build &>/dev/null && pnpm --silent nitrolux",
         "check": "biome check . --write",
         "format": "biome format . --write",
         "lint": "biome lint . --write",

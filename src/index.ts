@@ -10,16 +10,17 @@ const main = defineCommand({
     name: {
       type: 'positional',
       description: 'Application name',
+      valueHint: 'my-app',
       required: true,
     },
-    friendly: {
+    verbose: {
       type: 'boolean',
       description: 'Use friendly greeting',
       alias: 'F',
     },
   },
   run({ args }) {
-    console.info(`${args.friendly ? 'Howdy,' : 'Creating application:'} ${args.name}`)
+    console.info(`${args.friendly ? 'Howdy,' : 'Creating application:'} ${args.name}\n`)
   },
 })
 
