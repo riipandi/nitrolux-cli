@@ -1,6 +1,6 @@
 {
     "name": "@nitrolux/cli",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "description": "Nitrolux Command Line Interface",
     "author": "Aris Ripandi <aris@duck.com>",
     "license": "MIT",
@@ -18,7 +18,9 @@
         ".": "./dist/index.mjs",
         "./cli": "./bin/nitrolux.mjs"
     },
-    "bin": "./bin/nitrolux.mjs",
+    "bin": {
+        "nitrolux": "./bin/nitrolux.mjs"
+    },
     "main": "./bin/nitrolux.mjs",
     "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
