@@ -1,4 +1,4 @@
-import { defineCommand, runMain } from 'citty'
+import { runMain as _runMain, defineCommand } from 'citty'
 
 const main = defineCommand({
   meta: {
@@ -23,4 +23,6 @@ const main = defineCommand({
   },
 })
 
-runMain(main)
+const runMain = () => _runMain(main)
+
+export { runMain }

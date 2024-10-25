@@ -4,18 +4,22 @@
         "target": "ESNext",
         "module": "ESNext",
         "moduleResolution": "Node",
-        "esModuleInterop": true,
+        "esModuleInterop": false,
         "tsBuildInfoFile": "./node_modules/.tsbuildinfo",
         "allowJs": true,
+        "allowSyntheticDefaultImports": true,
         "isolatedModules": false,
         "moduleDetection": "auto",
         "noEmit": true,
         "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": true,
         "noImplicitOverride": true,
+        "noUnusedLocals": true,
         "resolveJsonModule": true,
         "skipLibCheck": true,
         "strict": true,
-        "verbatimModuleSyntax": true
+        "verbatimModuleSyntax": true,
+        "types": ["node"]
     },
     "include": ["src"]
 }
