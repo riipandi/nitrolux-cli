@@ -1,6 +1,6 @@
 {
     "name": "@nitrolux/cli",
-    "version": "0.0.19",
+    "version": "0.1.0",
     "description": "Nitrolux Command Line Interface",
     "author": "Aris Ripandi <aris@duck.com>",
     "license": "MIT",
@@ -56,9 +56,9 @@
     },
     "devDependencies": {
         "@biomejs/biome": "^1.9.4",
-        "@types/node": "^22.8.0",
+        "@types/node": "^22.8.1",
         "lefthook": "^1.8.1",
-        "npm-check-updates": "^17.1.4",
+        "npm-check-updates": "^17.1.6",
         "typescript": "^5.6.3",
         "unbuild": "^2.0.0",
         "unplugin-purge-polyfills": "^0.0.7"
