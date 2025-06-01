@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import { resolve } from 'node:path'
 import { defineCommand } from 'citty'
-import consola from 'consola'
+import { consola } from 'consola'
 import { downloadTemplate } from 'giget'
 import { makeDirectory } from 'make-dir'
 import { generate as generateName } from 'memorable-ids'
