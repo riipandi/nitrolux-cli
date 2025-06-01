@@ -1,10 +1,11 @@
 import fs from 'node:fs'
+import { resolve } from 'node:path'
 import { defineCommand } from 'citty'
 import consola from 'consola'
 import { downloadTemplate } from 'giget'
 import { makeDirectory } from 'make-dir'
+import { generate as generateName } from 'memorable-ids'
 import jq from 'node-jq'
-import { resolve } from 'pathe'
 import { checkDirectoryExists } from '../utils'
 
 export default defineCommand({
@@ -15,9 +16,10 @@ export default defineCommand({
   args: {
     name: {
       type: 'positional',
-      description: 'Application name (lowercase, separated by dashes)',
+      description:
+        'Application name (lowercase, separated by dashes). If not provided, a random name will be generated.',
       valueHint: 'nitro-app',
-      required: true,
+      required: false,
     },
     template: {
       type: 'string',
@@ -92,12 +94,30 @@ export default defineCommand({
     consola.info('Do some cleanup here')
   },
   async run({ args }) {
-    const { name, baseDir, force, silent, dryRun, install, template } = args
+    let { name, baseDir, force, silent, dryRun, install, template } = args
 
     try {
+      // Generate name if not provided
+      if (!name) {
+        name = generateName()
+        if (!silent) {
+          consola.info(`No name provided, generated name: ${name}`)
+
+          const confirmed = await consola.prompt(`Create application with name "${name}"?`, {
+            type: 'confirm',
+          })
+
+          if (!confirmed) {
+            consola.info('Application creation cancelled')
+            process.exit(0)
+          }
+        }
+      }
+
       // Early exit for dry run
       if (dryRun) {
         consola.info('Dry run mode - no changes will be made')
+        consola.info(`Would create application: ${name}`)
         return
       }
 
@@ -116,7 +136,7 @@ export default defineCommand({
         consola.info(`Installing dependencies...`)
       }
 
-      const templateUrl = `github:nitroluxjs/templates/${template}`
+      const templateUrl = `github:riipandi/nitro-templates/${template}`
       const { source, dir } = await downloadTemplate(templateUrl, {
         dir: targetDir,
         cwd: targetDir,
